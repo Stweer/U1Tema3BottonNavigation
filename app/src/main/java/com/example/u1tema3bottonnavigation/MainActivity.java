@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
   Fragment FragmentoSeleccionado = null;
   FragmentManager fragmentManager = getSupportFragmentManager();
+  FragmentTransaction transaction = fragmentManager.beginTransaction();
+
 
 
   private ActionBar toolbar;
@@ -27,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     toolbar.setTitle("Shop");
+
+
+
+    FragmentoSeleccionado = new ListaFragmento();
+    transaction.replace(R.id.frame_container,FragmentoSeleccionado);
+    transaction.commit();
+
 
 
 
@@ -63,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
         case R.id.navigation_profile:
           toolbar.setTitle("Profile");
+
+          FragmentoSeleccionado = new LoginFragmento ();
+
+          transaction.replace(R.id.frame_container,FragmentoSeleccionado);
+          transaction.commit();
           return true;
       }
       return false;
