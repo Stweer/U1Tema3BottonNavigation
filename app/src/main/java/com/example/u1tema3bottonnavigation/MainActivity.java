@@ -9,8 +9,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,6 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
         case R.id.navigation_cart:
           toolbar.setTitle("Cart");
+
+          FragmentoSeleccionado = new CuentaFragmento ();
+
+          transaction.replace(R.id.frame_container,FragmentoSeleccionado);
+          transaction.commit();
+
+
           return true;
 
         case R.id.navigation_profile:
@@ -82,4 +92,15 @@ public class MainActivity extends AppCompatActivity {
       return false;
     }
   };
+
+  public void ButtonIzquierda(View view) {
+    Snackbar.make(view, "Replace with your own action",
+            Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
+  }
+
+  public void ButtonDerecha(View view) {
+    Toast.makeText(this, "Se pulso el floating button de la Derecha "+ view.getTag(), Toast.LENGTH_LONG).show();
+
+  }
 }
